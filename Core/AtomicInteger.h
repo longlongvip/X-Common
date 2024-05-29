@@ -6,10 +6,10 @@
 #include "Type.h"
 
 template<typename T>
-class AtomicInteger : NonCopyable
+class AtomicInteger : public NonCopyable
 {
 public:
-    AtomicInteger() : value_(0) { }
+    AtomicInteger() = default;
 
     T Get() { return value_.load(std::memory_order_relaxed); }
     T GetInc()
@@ -43,8 +43,8 @@ public:
     }
 
 private:
-    std::atomic<T> value_;
+    std::atomic<T> value_ = 0;
 };
 
-typedef AtomicInteger<int32> AtomicInt32;
-typedef AtomicInteger<int64> AtomicInt64;
+using AtomicInt = AtomicInteger<int>;
+using AtomicInt64 = AtomicInteger<int64>;

@@ -1,15 +1,12 @@
 #pragma once
 
-namespace X
+class NonCopyable
 {
-    class NonCopyable
-    {
-    public:
-        NonCopyable(const NonCopyable&) = delete;
-        void operator=(const NonCopyable&) = delete;
+ public:
+    NonCopyable(const NonCopyable&) = delete;
+    void operator=(const NonCopyable&) = delete;
 
-    protected:
-        NonCopyable() = default;
-        ~NonCopyable() = default;
-    };
-}
+protected:
+    NonCopyable() = default;
+    ~NonCopyable() = default;
+};

@@ -24,17 +24,17 @@
     || defined(TCC_TARGET_X86_64) \
     || defined(__wasm64) || defined(__wasm64__)
 
-#   define X_CPU_BIT_SIZE      64
-#   define X_CPU_BIT_BYTE      8
-#   define X_CPU_BIT_ALIGN     7
-#   define X_CPU_BIT32         0
-#   define X_CPU_BIT64         1
-#   define X_CPU_SHIFT         6
+#   define X_CPU_BIT_SIZE    64
+#   define X_CPU_BIT_BYTE    8
+#   define X_CPU_BIT_ALIGN   7
+#   define X_CPU_BIT32       0
+#   define X_CPU_BIT64       1
+#   define X_CPU_SHIFT       6
 #   else
-#   define X_CPU_BIT_SIZE      32
-#   define X_CPU_BIT_BYTE      4
-#   define X_CPU_BIT_ALIGN     3
-#   define X_CPU_BIT32         1
-#   define X_CPU_BIT64         0
-#   define X_CPU_SHIFT         5
+#   define X_CPU_BIT_SIZE    32
+#   define X_CPU_BIT_BYTE    4
+#   define X_CPU_BIT_ALIGN   3
+#   define X_CPU_BIT32       1
+#   define X_CPU_BIT64       0
+#   define X_CPU_SHIFT       5
 #   endif

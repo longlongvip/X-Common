@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include <cstdint>
 
 #include "Config.h"
 #include "Keyword.h"
@@ -9,97 +10,58 @@
 #   include <stdatomic.h>
 #endif
 
-/** 基本 */
-typedef unsigned char uchar;
+// 基本
+using uchar = unsigned char;
 
-typedef signed char int8;
-typedef unsigned char uint8;
-typedef unsigned char byte;
+using int8 = signed char;
+using uint8 = unsigned char;
+using byte = unsigned char;
 
-typedef signed short int16;
-typedef unsigned short uint16;
+using int16 = short;
+using uint16 = unsigned short;
 
-typedef signed int   int32;
-typedef unsigned int uint32;
+using int32 = int;
+using uint32 = unsigned int;
 
-typedef void x_void;
-typedef void* x_pointer;
-typedef void const* x_const_pointer;
-typedef x_pointer x_handle;
-
-/** null */
-#ifdef __cplusplus
-#   define x_null (0)
-# else
-#   define x_null (x_pointer)(0)
-#endif
-
-/** 无参数 */
-#ifdef __cplusplus
-#   define x_noarg
-#else
-#   define x_noarg x_void
-#endif
-
-// wchar
+// wide char
 #ifdef X_CONFIG_TYPE_HAVE_WCHAR
-typedef wchar_t                 wchar_t;
-#elif defined(CONFIG_OS_WINDOWS)
-#   if defined(_WCHAR_T_DEFINED) || defined(_NATIVE_WCHAR_T_DEFINED)
-typedef wchar_t                 wchar_t;
+    using x_wchar_t = wchar_t;
+#elif defined(X_CONFIG_OS_WINDOWS)
+#   if defined(X_WCHAR_T_DEFINED) || defined(X_NATIVE_WCHAR_T_DEFINED)
+    using x_wchar_t = wchar_t;
 #   else
-typedef uint16             wchar_t;
+    using x_wchar_t = uint16;
 #   endif
-#elif defined(__WCHAR_TYPE__)
-typedef __WCHAR_TYPE__              wchar_t;
-#elif defined(__WCHAR_WIDTH__) && (__WCHAR_WIDTH__ == 2)
-typedef int16                  wchar_t;
-#elif defined(__WCHAR_WIDTH__) && (__WCHAR_WIDTH__ == 4)
-typedef int32                  wchar_t;
+#elif defined(X_WCHAR_TYPE)
+    using  x_wchar_t = X_WCHAR_TYPE;
+#elif defined(X_WCHAR_WIDTH) && (X_WCHAR_WIDTH == 2)
+    using x_wchar_t = int16; 
+#elif defined(X_WCHAR_WIDTH) && (X_WCHAR_WIDTH == 4)
+    using x_wchar_t = int32;
 #else
-//typedef int32                  wchar_t;
+    using x_wchar_t = int32;
 #endif
 
-/** int64 */
+// int64
 #if defined(X_COMPILER_IS_MSVC)
-typedef __int64           int64;
-typedef unsigned __int64  uint64;
+    using int64 = long long;
+    using uint64 = unsigned long long;
 #elif (defined(__LONG_WIDTH__) && __LONG_WIDTH__ == 8) || (defined(__SIZEOF_LONG__) && __SIZEOF_LONG__ == 8)
-typedef signed long   int64;
-typedef unsigned long uint64;
+    using int64 = signed long;
+    using uint64 =  unsigned long;
 #else
-typedef signed long long   int64;
-typedef unsigned long long uint64;
+    using int64 = signed long long;
+    using int64 =  unsigned long long;
 #endif
 
-// hong and hize
-typedef int64  x_hont;
-typedef uint64 x_hize;
+// static_cast
+#define x_static_cast(t, v) static_cast<t>(v)
 
-// long and size
-#if defined(X_CONFIG_OS_WINDOWS) && X_CPU_BIT64
-typedef int64  x_long;
-typedef uint64 x_ulong;
-#else
-typedef signed long x_long;
-typedef unsigned long x_ulong;
-#endif
-typedef x_ulong x_size_t;
+// dynamic_cast
+#define x_dynamic_cast(t, v) dynamic_cast<t>(v)
 
-// integer pointer
-typedef x_long  x_ptrdiff;
-typedef x_ulong x_uintptr;
+// const_cast
+#define x_const_cast(t, v) const_cast<t>(v)
 
-// fixed
-typedef int32 fixed6;
-typedef int32 fixed16;
-typedef int32 fixed30;
-typedef fixed16  fixed;
-
-struct x_version
-{
-    byte major;
-    byte minor;
-    byte alter;
-    x_hize build;
-};
+// reinterpret_cast
+#define x_reinterpret_cast(t, v) reinterpret_cast<t>(v)

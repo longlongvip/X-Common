@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#include "compiler.h"
-#include "cpu.h"
+#include "Compiler.h"
+#include "CPU.h"
 
 #define x_volatile  volatile
 
-#if defined(X_COMPILER_IS_SVC)
-#   ifdef(_DEBUG)
+#if defined(X_COMPILER_IS_MSVC)
+#   ifdef _DEBUG
 #       define x_debug
 #   endif
 #   define x_func             __FUNCTION__
@@ -35,7 +35,7 @@
 #   error unknown cpu bytes
 #endif
 
-/** like */
+/* like */
 #   define x_likely(x)   (x)
 #   define x_unlikely(x) (x)
 
@@ -49,33 +49,33 @@
 #   define x_debug_args
 #endif
 
-/** small */
+/* small */
 #ifdef X_CONFIG_SMALL
 #   define x_small
 #endif
 
-/** newline */
+/* newline */
 #ifdef X_CONFIG_OS_WINDOWS
 #   define x_newline  "\r\n"
 #else
 #   define x_newline  "\n"
 #endif
 
-/** 该字符串仅适用于大型模式 */
+/* 该字符串仅适用于大型模式 */
 #ifdef x_small
 #   define x_large_string(x) x_null
 #else
 #   define x_large_string(x) x
 #endif
 
-/** 仅用于调试模式的字符串 */
+/* 仅用于调试模式的字符串 */
 #ifdef x_debug
 #   define x_debug_string(x) x
 #else
 #   define x_debug_string(x) x_null
 #endif
 
-/** extern C */
+/* extern C */
 #ifdef __cplusplus
 #   define x_extern_c extern "C"
 #   define x_extern_c_enter extern "C" {
@@ -86,10 +86,10 @@
 #   define x_extern_c_leave
 #endif
 
-/** 导出动态链接库 */
-#if defined(X_COMPILER_IS_SVC)
+/* 导出动态链接库 */
+#if defined(X_COMPILER_IS_MSVC)
 #   define x_export  __declspec(dllexport)
-#elif defined(TB_COMPILER_IS_GCC) && ((__GNUC__ >= 4) || (__GNUC__ == 3 && __GNUC_INOR__ >= 3))
+#elif defined(X_COMPILER_IS_GCC) && ((__GNUC__ >= 4) || (__GNUC__ == 3 && __GNUC_INOR__ >= 3))
 #   define x_export  __attribute((visibility("default")))
 #else
 #   define x_export
@@ -109,7 +109,7 @@
 #   define x_has_include(x) 0
 #endif
 
-// has builtin
+// has built-in
 #ifdef has_builtin
 #   define x_has_builtin(x) __has_builtin(x)
 #else
@@ -126,11 +126,11 @@
 // thread local
 #if x_has_feature(c_thread_local)
 #   define x_thread_local__                              _Thread_local
-#elif defined(TB_CONFIG_KEYWORD_HAVE_Thread_local)
+#elif defined(X_CONFIG_KEYWORD_HAVE_Thread_local)
 #   define x_thread_local__                              _Thread_local
-#elif defined(TB_CONFIG_KEYWORD_HAVE__thread)
+#elif defined(X_CONFIG_KEYWORD_HAVE__thread)
 #   define x_thread_local__                              __thread
-#elif defined(TB_COMPILER_IS_SVC) || defined(TB_COMPILER_IS_BORLAND)
+#elif defined(X_COMPILER_IS_SVC) || defined(X_COMPILER_IS_BORLAND)
 #   define x_thread_local__                              __declspec(thread)
 #endif
 
@@ -161,7 +161,7 @@
     test(1, 2);
  * @endcode
  */
-#if defined(TB_COMPILER_IS_GCC) || defined(TB_COMPILER_IS_CLANG)
+#if defined(X_COMPILER_IS_GCC) || defined(X_COMPILER_IS_CLANG)
 #   define x_overloadable__                              __attribute((overloadable))
 #else
 #   define x_overloadable__
