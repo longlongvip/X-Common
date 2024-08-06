@@ -1,7 +1,5 @@
 ﻿#pragma once
 
-#include "Keyword.h"
-
 /* 
  * macros
  */
@@ -14,11 +12,7 @@
   * .e.g gcc -m32 -dM -E - < /dev/null | grep 86
   * .e.g gcc -march=armv6 -dM -E - < /dev/null | grep ARM
   */
-#if defined(__i386) \
-    || defined(__i686) \
-    || defined(__i386__) \
-    || defined(__i686__) \
-    || defined(_M_IX86)
+#if defined(__i386) || defined(__i686)  || defined(__i386__)  || defined(__i686__) || defined(_M_IX86)
 #   define X_ARCH_x86
 #   if defined(__i386) || defined(__i386__)
 #       define  X_ARCH_STRING    "i386"
@@ -35,8 +29,7 @@
 #   else
 #       define X_ARCH_STRING    "x86"
 #   endif
-#elif defined(__x86_64) \
-    || defined(__amd64__) || defined(__amd64) \
+#elif defined(__x86_64)  || defined(__amd64__) || defined(__amd64) \
     || defined(__ia64__) || defined(__IA64__) || defined(__ia64) || defined(_M_IA64) \
     || defined(_M_X64)
 #   define X_ARCH_x64
@@ -49,9 +42,9 @@
 #   else
 #       define X_ARCH_STRING    "x64"
 #   endif
-#elif defined(__arm__) || defined(__arm64) || \
-    defined(__arm64__) || (defined(__aarch64__) && __aarch64__) || \
-    defined(_M_ARM64) || defined(_M_ARM)
+#elif defined(__arm__) || defined(__arm64) ||  defined(__arm64__) \
+      || (defined(__aarch64__) && __aarch64__) || \
+      defined(_M_ARM64) || defined(_M_ARM)
 #   define X_ARCH_ARM
 #   if defined(__ARM64_ARCH_8__) || defined(_M_ARM64)
 #       define X_ARCH_ARM64
@@ -133,9 +126,7 @@
 #       define X_ARCH_ARM_NEON
 #       define X_ARCH_STRING_3    "_neon"
 #   endif
-#elif defined(mips) \
-    || defined(_mips) \
-    || defined(__mips__)
+#elif defined(mips) || defined(_mips) || defined(__mips__)
 #   define X_ARCH_MIPS
 #   if defined(_MIPSEB)
 #       if (_MIPS_SIM == _ABIO32)

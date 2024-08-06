@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "CPU.h"
+#include "Compiler.h"
 
 // abs
 #define x_abs(x) ((x) > 0 ? (x) : -(x))

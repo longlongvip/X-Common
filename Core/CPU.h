@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-/** 检测64位 */
 #if defined(__LP64__) \
     || defined(__64BIT__) \
     || defined(_LP64) \

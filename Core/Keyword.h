@@ -137,24 +137,24 @@
 /* c function overloadable
  *
  * @code
-    static __tb_inline__ tb_void_t test(tb_int_t a) __tb_overloadable__
+    static __x_inline__ x_void_t test(x_int_t a) __x_overloadable__
     {
-        tb_trace_i("test1: %d", a);
+        x_trace_i("test1: %d", a);
     }
-    static __tb_inline__ tb_void_t test(tb_int_t a, tb_int_t b) __tb_overloadable__
+    static __x_inline__ x_void_t test(x_int_t a, x_int_t b) __x_overloadable__
     {
-        tb_trace_i("test2: %d %d", a, b);
+        x_trace_i("test2: %d %d", a, b);
     }
  * @endcode
  *
- * If the compiler does not support __tb_overloadable__, we can use the following code to implement function overload.
+ * If the compiler does not support __x_overloadable__, we can use the following code to implement function overload.
  *
  * @code
     #define test_n(a, b, ...) test_impl(a, b)
     #define test(a, args ...) test_n(a, ##args, 0, 0, 0)
-    static __tb_inline__ tb_void_t test_impl(tb_int_t a, tb_int_t b)
+    static __x_inline__ x_void_t test_impl(x_int_t a, x_int_t b)
     {
-        tb_trace_i("test: %d %d", a, b);
+        x_trace_i("test: %d %d", a, b);
     }
 
     test(1);
@@ -167,7 +167,11 @@
 #   define x_overloadable__
 #endif
 
-/*! the type reference keyword for defining tb_xxxx_ref_t
+#if x_has_feature(c_atomic) && !defined(__STDC_NO_ATOMICS__)
+#   include <stdatomic.h>
+#endif
+
+/*! the type reference keyword for defining x_xxxx_ref_t
  *
  * typedef x_typeref(xxxx);
  *
@@ -176,11 +180,11 @@
  *
  * @code
  *
-   typedef struct{}*    tb_xxxx_ref_t;
+   typedef struct{}*    x_xxxx_ref_t;
 
    typedef struct x_yyyy_t
    {
-       tb_xxxx_ref_t    xxxx;
+       x_xxxx_ref_t    xxxx;
 
    }x_yyyy_t;
 
@@ -189,7 +193,7 @@
  * @endcode
  *
  */
-#define x_typeref(object)                              struct x_##object##_dummy_t{tb_int_t dummy;} const* tb_##object##_ref_t
+#define x_typeref(object)                              struct x_##object##_dummy_t{x_int_t dummy;} const* x_##object##_ref_t
 
  // 宏
 #define x_string(x)                                   #x

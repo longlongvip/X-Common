@@ -1,27 +1,7 @@
 ﻿#pragma once
-#include <cstdint>
 
-#include "Config.h"
-#include "Keyword.h"
 #include "Compiler.h"
-#include "CPU.h"
-
-#if x_has_feature(c_atomic) && !defined(__STDC_NO_ATOMICS__)
-#   include <stdatomic.h>
-#endif
-
-// 基本
-using uchar = unsigned char;
-
-using int8 = signed char;
-using uint8 = unsigned char;
-using byte = unsigned char;
-
-using int16 = short;
-using uint16 = unsigned short;
-
-using int32 = int;
-using uint32 = unsigned int;
+#include "BaseType.h"
 
 // wide char
 #ifdef X_CONFIG_TYPE_HAVE_WCHAR
@@ -46,22 +26,47 @@ using uint32 = unsigned int;
 #if defined(X_COMPILER_IS_MSVC)
     using int64 = long long;
     using uint64 = unsigned long long;
+
+    using s64 = long long;
+    using u64 = unsigned long long;
+
+#define int64_min LLONG_MIN
+#define int64_max LLONG_MAX
+#define uint64_min 0x0000000000000000
+#define uint64_max ULLONG_MAX
+#define s64_min LLONG_MIN
+#define s64_max LLONG_MAX
+#define u64_min 0x0000000000000000
+#define u64_max ULLONG_MAX
+
 #elif (defined(__LONG_WIDTH__) && __LONG_WIDTH__ == 8) || (defined(__SIZEOF_LONG__) && __SIZEOF_LONG__ == 8)
     using int64 = signed long;
     using uint64 =  unsigned long;
+
+    using s64 = singned long;
+    using u64 = unsigned long;
+
+    #define int64_min LLONG_MIN
+    #define int64_max LLONG_MAX
+    #define uint64_min 0x0000000000000000
+    #define uint64_max ULLONG_MAX
+    #define s64_min LLONG_MIN
+    #define s64_max LLONG_MAX
+    #define u64_min 0x0000000000000000
+    #define u64_max ULLONG_MAX
 #else
     using int64 = signed long long;
     using int64 =  unsigned long long;
+
+    using s64 = signed long long;
+    using u64 = unsigned long long;
+
+    #define int64_min LLONG_MIN
+    #define int64_max LLONG_MAX
+    #define uint64_min 0x0000000000000000
+    #define uint64_max ULLONG_MAX
+    #define s64_min LLONG_MIN
+    #define s64_max LLONG_MAX
+    #define u64_min 0x0000000000000000
+    #define u64_max ULLONG_MAX
 #endif
-
-// static_cast
-#define x_static_cast(t, v) static_cast<t>(v)
-
-// dynamic_cast
-#define x_dynamic_cast(t, v) dynamic_cast<t>(v)
-
-// const_cast
-#define x_const_cast(t, v) const_cast<t>(v)
-
-// reinterpret_cast
-#define x_reinterpret_cast(t, v) reinterpret_cast<t>(v)
