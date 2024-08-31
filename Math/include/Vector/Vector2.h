@@ -180,7 +180,7 @@ namespace Math
         return { vec.x * v, vec.y * v };
     }
 
-    /* 获取 Vec2 每个分量乘以一个值的结果 */
+    /* 获取 一个值 乘以 Vec2 每个分量的结果 */
     Vec2 operator*(float v, const Vec2 &vec)
     {
         return {vec.x * v, vec.y * v };
