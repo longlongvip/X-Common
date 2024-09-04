@@ -96,8 +96,8 @@ namespace Math
         void rotate(float deg)
         {
             float rad = deg_to_rad(deg);
-            float c = cosf(rad);
-            float s = sinf(rad);
+            float c = cos(rad);
+            float s = sin(rad);
             float tx = x * c - y * s;
             float ty = x * s + y * c;
             x = tx;
@@ -237,7 +237,7 @@ namespace Math
     /* Vec2 的长度/模 */
     float len(const Vec2& vec)
     {
-        return sqrtf( vec.x *  vec.x +  vec.y *  vec.y);
+        return sqrt( vec.x *  vec.x +  vec.y *  vec.y);
     }
 
     /* 获取 Vec2 组件的最大值 */

@@ -16,7 +16,7 @@ namespace Math
         Vec4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) { }
         Vec4(float x_, float y_, float z_, float w_) : x(x_), y(y_), z(z_), w(w_) { }
         explicit Vec4(float v) : x(v), y(v), z(v), w(v) { }
-        explicit Vec4(const Vec4& vec) : x(vec.x), y(vec.y), z(vec.z), w(vec.w) { }
+        Vec4(const Vec4& vec) : x(vec.x), y(vec.y), z(vec.z), w(vec.w) { }
 
         Vec4 &operator-()
         {
@@ -225,7 +225,7 @@ namespace Math
     /* Vec4 的长度/模值 */
     float len(const Vec4& vec)
     {
-        return sqrtf( vec.x *  vec.x +  vec.y * vec.y +  vec.z * vec.z + vec.w * vec.w);
+        return sqrt( vec.x *  vec.x +  vec.y * vec.y +  vec.z * vec.z + vec.w * vec.w);
     }
 
     /* 获取 Vec4 组件的最大值 */

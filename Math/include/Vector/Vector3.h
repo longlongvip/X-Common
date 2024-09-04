@@ -105,8 +105,8 @@ namespace Math
 		void rotateX(const float deg)
 		{
 			float rad = deg_to_rad(deg);
-			float c = cosf(rad);
-			float s = sinf(rad);
+			float c = cos(rad);
+			float s = sin(rad);
 			float ty = y * c - z * s;
 			float tz = y * s + z * c;
 			y = ty;
@@ -250,7 +250,7 @@ namespace Math
     /* Vec3 的长度/模值 */
     float len(const Vec3& vec)
     {
-        return sqrtf( vec.x *  vec.x +  vec.y *  vec.y +  vec.z *  vec.z);
+        return sqrt( vec.x *  vec.x +  vec.y *  vec.y +  vec.z *  vec.z);
     }
 
     /* 获取 Vec3 组件的最大值 */
@@ -281,8 +281,8 @@ namespace Math
     Vec3 rotateX(const float deg)
     {
         float rad = deg_to_rad(deg);
-        float c = cosf(rad);
-        float s = sinf(rad);
+        float c = cos(rad);
+        float s = sin(rad);
         float ty = y * c - z * s;
         float tz = y * s + z * c;
         return { x, ty, tz };
