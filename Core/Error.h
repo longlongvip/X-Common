@@ -20,7 +20,6 @@ constexpr int EEXIST = 17; /* File exists 文件已存在 */
 constexpr int EXDEV = 18; /* Cross-device link 跨设备链路 */
 constexpr int ENODEV = 19; /* No such device 设备不存在 */
 constexpr int ENOTDIR = 20; /* Not a directory 路径不存在 */
-
 constexpr int EISDIR = 21; /* Is a directory 是路径 */
 constexpr int EINVAL = 22; /* Invalid argument 无效参数 */
 constexpr int ENFILE = 23; /* File table overflow 文件表溢出 */

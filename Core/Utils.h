@@ -19,10 +19,10 @@
 #define x_min3(x, y, z) (((x) < (y))? (((x) < (z))? (x) : (z)) : (((y) < (z))? (y) : (z)))
 
 // the number of entries in the array
-#define x_arrayn(x) ((sizeof((x)) / sizeof((x)[0])))
+#define x_array_size(x) ((sizeof((x)) / sizeof((x)[0])))
 
-// ispow2: 1, 2, 4, 8, 16, 32, ...
-#define x_ispow2(x) (!((x) & ((x) - 1)) && (x))
+// is_pow2: 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, ...
+#define x_is_pow2(x) (!((x) & ((x) - 1)) && (x))
 
 // align2
 #define x_align2(x) (((x) + 1) >> 1 << 1)

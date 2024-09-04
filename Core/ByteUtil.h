@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include <string>
+
 #include "Type.h"
 
 #define x_byte_swap16(x) static_cast<uint16>((((x) >> 8) & 0xff) | (((x) & 0xff) << 8))
@@ -17,3 +19,15 @@
    | (((x) & 0x0000000000ff0000ull) << 24)	\
    | (((x) & 0x000000000000ff00ull) << 40)	\
    | (((x) & 0x00000000000000ffull) << 56))
+
+
+std::string x_readable_bytes(u64 n)
+{
+
+}
+
+// 将字节流逐个序列化为16进制FF格式，空格分开，<num_per_line>换行，可用于debug显示
+static std::string x_bytes_to_hex(const uint8 *buf, std::size_t len, std::size_t num_per_line=8, bool with_ascii=true)
+{
+
+}

@@ -1,10 +1,19 @@
 ﻿#pragma once
 
-#include "ByteSwap.h"
+#include "ByteUtil.h"
 
 constexpr int LITTLE_ENDIAN = 1234;
-constexpr int BIG_ENDIAN = 4321;
-constexpr int  ENDIAN_NESS = LITTLE_ENDIAN;
+constexpr int BIG_ENDIAN    = 4321;
+constexpr int ENDIAN_NESS   = LITTLE_ENDIAN;
+
+bool check_local_if_le();
+bool check_local_if_le()
+{
+    // 检测本地设备是小端还是大端
+    int val=1;
+    int8 *p = reinterpret_cast<int8*>(&val);
+    return *p == 1;
+}
 
 #if ENDIAN_NESS == LITTLE_ENDIAN
 #   define x_htobe16(x) x_byte_swap16(x)
