@@ -88,4 +88,7 @@ namespace Math
 	constexpr float Euler         = 0.577215664901532860606512090082402f; // 欧拉常数
 	constexpr float One_Div_Euler = 1.732454714600633473583025315860829f; // 1.0/欧拉常数
 
+	constexpr float Catalan       = 0.915965594177219015054603514932384f; // 卡塔兰常数
+	
+
 } // namespace Math
